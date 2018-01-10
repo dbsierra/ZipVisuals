@@ -35,7 +35,7 @@ MonoBehaviour:
   m_DurationMode: 0
   m_SynchFrameRate: 1
   m_BaseFileName:
-    m_Pattern: ground_<0000>.<ext>
+    m_Pattern: test_<0000>.<ext>
   m_DestinationPath:
     m_root: 1
     m_leaf: Recordings
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_AspectRatio: 0
   m_ForceEvenSize: 0
   source: 8
-  m_CameraTag: GroundCam
+  m_CameraTag: FrontCam
   m_FlipFinalOutput: 0
   m_AllowTransparency: 0
   m_CaptureUI: 0
