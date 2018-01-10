@@ -29,11 +29,13 @@ public class VideoWall : MonoBehaviour {
     [Header("Resources")]
     public MeshRenderer Wall;
     public Material TextureWriteMat;
+    public AudioSource Audio;
 
     private RenderTexture RenderTex;
     private float[] spectrum;
     #endregion
 
+    bool ready;
 
     void Start () {
         spectrum = new float[256];
@@ -52,10 +54,21 @@ public class VideoWall : MonoBehaviour {
         TextureWriteMat.SetColor("_Col3", ColorThemes[CurrentTheme].c3);
 
         CurrentTheme = 0;
+
+        ready = true;
     }
     
     void Update () {
-        
+        if (ready)
+        {
+            Audio.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
+
+            TextureWriteMat.SetFloatArray("_Spectrum", spectrum);
+
+            Graphics.Blit(null, RenderTex, TextureWriteMat);
+
+            Wall.material.SetTexture("_MainTex", RenderTex);
+        }
     }
 }
 
