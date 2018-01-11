@@ -71,7 +71,7 @@ public class VideoWall : MonoBehaviour {
         TextureWriteMat.SetColor("_Col2", Themes.GetCurrentTheme().c2);
         TextureWriteMat.SetColor("_Col3", Themes.GetCurrentTheme().c3);
     }
-
+    int count = 0;
     void Update () {
         if (ready)
         {

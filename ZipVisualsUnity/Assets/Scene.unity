@@ -230,6 +230,52 @@ Transform:
   m_Father: {fileID: 209394527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &154424916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 154424918}
+  - component: {fileID: 154424917}
+  m_Layer: 0
+  m_Name: ColorThemes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &154424917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 154424916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4853fe11f3d5e14d84f2f3889d08bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentTheme: 0
+  Themes:
+  - c1: {r: 0.19117647, g: 0.13052739, b: 0, a: 0}
+    c2: {r: 0.77205884, g: 0.27217814, b: 0.124891855, a: 0}
+    c3: {r: 0.89705884, g: 0.82427526, b: 0.23745677, a: 0}
+    accent: {r: 0, g: 0, b: 0, a: 0}
+--- !u!4 &154424918
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 154424916}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &209394526
 GameObject:
   m_ObjectHideFlags: 1
@@ -355,6 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444859506}
   - component: {fileID: 444859507}
+  - component: {fileID: 444859508}
   m_Layer: 0
   m_Name: FrontWall
   m_TagString: Untagged
@@ -405,6 +452,23 @@ MonoBehaviour:
   Themes: {fileID: 2064534222}
   TextureWriteMat: {fileID: 2100000, guid: 1aeeab6f496f9ef47b2eca7dc3bf6050, type: 2}
   Audio: {fileID: 808304592}
+--- !u!95 &444859508
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 444859505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &791595229
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +594,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 20f97417cecd5d7478bce2c0e9dcef35, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -796,11 +860,19 @@ PlayableDirector:
   m_PlayableAsset: {fileID: 11400000, guid: 7c190656f9841124a92b296c6066f09a, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
-  m_DirectorUpdateMode: 1
+  m_DirectorUpdateMode: 0
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 0}
     value: {fileID: 975065954}
+  - key: {fileID: 114205588955960354, guid: 7c190656f9841124a92b296c6066f09a, type: 2}
+    value: {fileID: 444859505}
+  - key: {fileID: 114730130625555652, guid: 7c190656f9841124a92b296c6066f09a, type: 2}
+    value: {fileID: 808304592}
+  - key: {fileID: 114573387189948452, guid: 7c190656f9841124a92b296c6066f09a, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114179131181050208, guid: 7c190656f9841124a92b296c6066f09a, type: 2}
+    value: {fileID: 2064534221}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &975065957
@@ -4712,6 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2064534223}
   - component: {fileID: 2064534222}
+  - component: {fileID: 2064534224}
   m_Layer: 0
   m_Name: ColorThemes
   m_TagString: Untagged
@@ -4736,6 +4809,10 @@ MonoBehaviour:
     c2: {r: 0.002649224, g: 0.21230313, b: 0.3602941, a: 0}
     c3: {r: 0.5882353, g: 1, b: 0.7607843, a: 0}
     accent: {r: 0, g: 0, b: 0, a: 0}
+  - c1: {r: 0.19215687, g: 0.12941177, b: 0, a: 0}
+    c2: {r: 0.77254903, g: 0.27058825, b: 0.1254902, a: 0}
+    c3: {r: 0.8980392, g: 0.8235294, b: 0.23921569, a: 0}
+    accent: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &2064534223
 Transform:
   m_ObjectHideFlags: 0
@@ -4749,3 +4826,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2064534224
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2064534221}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
