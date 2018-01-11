@@ -114,7 +114,7 @@ float2 glitchBars(float2 uv, float _Rows, float _Cols, float _Phase, float _Mode
     float b = 0.0f;
 
     float r = (uv.y*_Rows) / _Rows;
-    float c = (uv.x*_Cols) / _Cols;//  round(UNITY_ACCESS_INSTANCED_PROP(_Color_arr, _Color).g * _Cols);
+    float c = (uv.x*_Cols) / _Cols;
 
     float rowI = floor(uv.y*_Rows);
     float colI = floor(uv.x*_Cols);

@@ -10,6 +10,7 @@ public class VideoWall : MonoBehaviour {
     public Vector2 Resolution;
 
     [Header("Shader Parameters")]
+    public float Aspect;
     public Vector2 RowsCols;
     public float Phase;
     public float Mode;
@@ -19,15 +20,15 @@ public class VideoWall : MonoBehaviour {
     public float SpectrumMag;
     public float RGBShift;
     public float VHS;
-
-    [Header("Color Themes")]
-    public int CurrentTheme;
-    public ColorTheme[] ColorThemes;
+    public float SquareMag;
+    public float SquareRotate;
     #endregion
 
     #region Resources
     [Header("Resources")]
     public MeshRenderer Wall;
+    public MeshRenderer Wall2;
+    public Utilities.ColorThemes Themes;
     public Material TextureWriteMat;
     public AudioSource Audio;
 
@@ -43,24 +44,39 @@ public class VideoWall : MonoBehaviour {
         RenderTex = new RenderTexture((int)Resolution.x, (int)Resolution.y, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
         RenderTex.filterMode = FilterMode.Point;
 
-        // Initialize Variables
-        TextureWriteMat.SetFloat("_Mask", 1);
-        TextureWriteMat.SetFloat("_Static", 0);
-        TextureWriteMat.SetFloat("_Mode", 3);
-        TextureWriteMat.SetFloat("_SpectrumMag", .9f);
-        TextureWriteMat.SetFloat("_MaskFlip", 1);
-        TextureWriteMat.SetColor("_Col1", ColorThemes[CurrentTheme].c1);
-        TextureWriteMat.SetColor("_Col2", ColorThemes[CurrentTheme].c2);
-        TextureWriteMat.SetColor("_Col3", ColorThemes[CurrentTheme].c3);
-
-        CurrentTheme = 0;
+        UpdateParams();
 
         ready = true;
     }
     
+    void UpdateParams()
+    {
+
+        TextureWriteMat.SetFloat("_Rows", RowsCols.x);
+        TextureWriteMat.SetFloat("_Cols", RowsCols.y);
+
+        TextureWriteMat.SetFloat("_Square", SquareMag);
+        TextureWriteMat.SetFloat("_Aspect", Aspect);
+        TextureWriteMat.SetFloat("_Rotate", SquareRotate);
+
+
+
+        TextureWriteMat.SetFloat("_Mask", Mask);
+        TextureWriteMat.SetFloat("_Static", 0);
+        TextureWriteMat.SetFloat("_Mode", Mode);
+        TextureWriteMat.SetFloat("_SpectrumMag", SpectrumMag);
+        TextureWriteMat.SetFloat("_MaskFlip", MaskFlip);
+        TextureWriteMat.SetFloat("_GlitchColor", GlitchColor);
+        TextureWriteMat.SetColor("_Col1", Themes.GetCurrentTheme().c1);
+        TextureWriteMat.SetColor("_Col2", Themes.GetCurrentTheme().c2);
+        TextureWriteMat.SetColor("_Col3", Themes.GetCurrentTheme().c3);
+    }
+
     void Update () {
         if (ready)
         {
+            UpdateParams();
+
             Audio.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 
             TextureWriteMat.SetFloatArray("_Spectrum", spectrum);
@@ -68,20 +84,12 @@ public class VideoWall : MonoBehaviour {
             Graphics.Blit(null, RenderTex, TextureWriteMat);
 
             Wall.material.SetTexture("_MainTex", RenderTex);
+
+            if(Wall2 != null)
+            {
+                Wall2.material.SetTexture("_MainTex", RenderTex);
+            }
+
         }
-    }
-}
-
-[Serializable]
-public class ColorTheme
-{
-    public Color c1;
-    public Color c2;
-    public Color c3;
-    public Color accent;
-
-    public ColorTheme()
-    {
-
     }
 }
